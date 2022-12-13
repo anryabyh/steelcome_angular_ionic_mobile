@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title color="tertiary">Регистрация</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="center">
+    <app-logo></app-logo>
+    <h2>Регистрация</h2>
+  </div>
+    <form>
+      <ion-list>
+        <ion-item>
+        <ion-label position="stacked">Номер телефона</ion-label>
+        <ion-input type='text'></ion-input>
+        </ion-item>
+        <ion-item>
+        <ion-label position="stacked">Пароль</ion-label>
+        <ion-input type='password'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Повторите пароль</ion-label>
+        <ion-input type='password'></ion-input>
+      </ion-item>
+      <ion-item>
+        <a routerLink='/login'>Войти</a>
+      </ion-item>
+      <p>У тебя уже есть аккаунт?</p>
+      <ion-button expand="block" shape='round' color="tertiary">Войти</ion-button>
+      </ion-list>
+    </form>
+
+</ion-content>

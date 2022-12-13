@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Вход</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="center">
+    <app-logo></app-logo>
+  </div>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Номер телефона</ion-label>
+        <ion-input type='text' name="phone" [(ngModel)]="postData.phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Пароль</ion-label>
+        <ion-input type='password' name="password" [(ngModel)]="postData.password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <a routerLink='/signup'>Зарегистрироваться</a>
+      </ion-item>
+      <ion-button expand="block" shape='round' color="tertiary" (click)="auth()">Войти</ion-button>
+    </ion-list>
+
+  </form>
+
+</ion-content>
