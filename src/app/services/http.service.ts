@@ -12,7 +12,7 @@ export class HttpService {
   options = { headers: this.headers, withCredintials: false }
 
   post(path: string, data: any) {
-    let url = 'https://testcheck.s-k56.ru/' + path
+    let url = 'https://api-aggregate.s-k56.ru/' + path
     const header = new HttpHeaders();
     return this.http.post(url, data, this.options)
   }

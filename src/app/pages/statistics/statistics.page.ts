@@ -48,6 +48,8 @@ export class StatisticsPage  implements OnInit{
   ngOnInit(){
     this.spakLine();
     this.radialChart();
+    this.test()
+    // this.updateSeries();
   }
 
 
@@ -56,6 +58,14 @@ export class StatisticsPage  implements OnInit{
       chart: {
         type: 'line',
         height: 100,
+
+        animations: {
+          enabled: true,
+          easing: 'linear',
+          dynamicAnimation: {
+            speed: 1000
+          }},
+
 
         dropShadow: {
           enabled: true,
@@ -68,8 +78,8 @@ export class StatisticsPage  implements OnInit{
       series: [
         {
           data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69],
-
         },
+
       ],
       stroke: {
         width: 3,
@@ -127,7 +137,47 @@ export class StatisticsPage  implements OnInit{
   removedArr(){
         const removed = this.spakLine;
   }
+
+
+//   public updateSeries() {
+//     setInterval((): void =>{
+//       this.updateSeries()
+//       }),10000;
+//     this.options.series = [{
+//         data: [23, 44, 1, 22]
+//       }];
+// }
+
+
+
+
+test(){
+  setInterval( () => {
+    // this.options.series[0].data = this.remove(this.options.series[0].data, 0)
+    this.options.series[0].data.shift();
+    this.options.series[0].data.push(getRandomInt(200))
+
+    console.log("kdlkfsold");
+  }, 1000)
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 }
+
+
+
+
+// // Удаляем элемент массива со со сдвигом
+//   remove(arr, indexes) {
+//     var arrayOfIndexes = [].slice.call(arguments, 1)
+//     return arr.filter(function (item, index:never) {
+//         return arrayOfIndexes.indexOf(index) == -1
+//     })
+//   }
+
+}
+
 
 
 

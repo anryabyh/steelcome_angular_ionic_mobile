@@ -4,6 +4,7 @@ import { AuthConstants } from 'src/app/config/auth-constants';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,11 @@ export class LoginPage implements OnInit {
   // password='';
 
 
-  constructor(private httpService: HttpService, private router: Router, private authService: AuthService, private storageService: StorageService) { }
+  constructor(private httpService: HttpService,
+    private router: Router,
+     private authService: AuthService,
+      private storageService: StorageService,
+      private toastServise: ToastService) { }
 
 
   ngOnInit() {
@@ -47,16 +52,16 @@ export class LoginPage implements OnInit {
 
         this.router.navigate(['home']);
        } else{
-        console.log('Не то')
+        this.toastServise.presentToast('Не то')
        }
       },
       (error:any)=>{
-        console.log("Системная ошибка");
+        this.toastServise.presentToast('Системная ошибка');
       }
       )
     }
     else{
-      console.log("Неверные логин или пароль");
+      this.toastServise.presentToast("Неверные логин или пароль");
       }
     }
   // auth() {
