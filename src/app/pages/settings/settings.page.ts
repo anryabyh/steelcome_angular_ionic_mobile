@@ -17,6 +17,14 @@ export class SettingsPage implements OnInit {
     phone: '',
     password: '',
   }
+  onToggleColorTheme(event){
+console.log(event.detail.checked);
+if(event.detail.checked){
+  document.body.setAttribute('color-theme', 'dark');
+}else{
+  document.body.setAttribute('color-theme', 'light');
+}
+  }
   ngOnInit() {
     this.authServise.userData$.subscribe(value => {
       this.displayUserData = value;
@@ -30,6 +38,7 @@ export class SettingsPage implements OnInit {
   //   // console.log(phone)
   //   return (this.postData.phone && this.postData.password && phone.length >= 11 && password.length > 0)
   // }
+
 
   logoutAuthClear() {
     // if (this.validateInputs()) {

@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -31,7 +32,7 @@ export type ChartOptions = {
   dataLabels: ApexDataLabels;
   legend: ApexLegend;
   fill: ApexFill;
-  plotOptions: ApexPlotOptions
+  plotOptions: ApexPlotOptions;
 };
 
 @Component({
@@ -39,34 +40,52 @@ export type ChartOptions = {
   templateUrl: './statistics.page.html',
   styleUrls: ['./statistics.page.scss'],
 })
-export class StatisticsPage  implements OnInit{
+export class StatisticsPage implements OnInit {
   public options: Partial<ChartOptions> | any;
-  public radial: Partial<ChartOptions>|any ;
+  public radial: Partial<ChartOptions> | any;
+
   constructor() {
-  }
-
-  ngOnInit(){
-    this.spakLine();
-    this.radialChart();
-    this.test()
-    // this.updateSeries();
-  }
-
-
-  spakLine() {
     this.options = {
+      series: [],
       chart: {
         type: 'line',
-        height: 100,
-
+        height: 300,
         animations: {
           enabled: true,
           easing: 'linear',
           dynamicAnimation: {
-            speed: 1000
-          }},
+            speed: 1000,
+          }}}
+    };
+  }
 
+  ngOnInit() {
+    this.spakLine();
+    // this.radialChart();
+    this.test();
+    // this.updateSeries();
+  }
 
+  async spakLine() {
+    const logs = await this.getLogs(); // Default value for id_machine: 1
+    const data = logs.map((log) => ({
+      x: new Date(log.time).toLocaleString(),
+      y: log.report,
+    }));
+
+    console.log(data);
+
+    this.options = {
+      chart: {
+        type: 'line',
+        height: 300,
+        animations: {
+          enabled: true,
+          easing: 'linear',
+          dynamicAnimation: {
+            speed: 1000,
+          },
+        },
         dropShadow: {
           enabled: true,
           top: 1,
@@ -77,9 +96,8 @@ export class StatisticsPage  implements OnInit{
       },
       series: [
         {
-          data: [12, 14, 2, 47, 32, 44, 14, 55, 41, 69],
+          data: data,
         },
-
       ],
       stroke: {
         width: 3,
@@ -97,88 +115,70 @@ export class StatisticsPage  implements OnInit{
       },
     };
   }
-  radialChart() {
-    this.radial = {
-      chart: {
-        type: 'radialBar',
-        height: 180,
-      },
-      series: [70],
-      plotOptions: {
-        radialBar: {
-          track: {
-            background: '#c7c7c7',
-            margin: 0,
-            strokeWidth: '70%',
-          },
-          dataLabels: {
-            name: {
-              color: '#fff',
-              offsetY: -10,
-              fontSize: '14px',
-            },
-            value: {
-              color: '#fff',
-              fontSize: '20px',
-              offsetY: 0,
-            },
-          },
-          hollow: {
-            size: '65%',
-          },
-        },
-      },
-      fill: {
-        colors: ['#fd6585'],
-      },
-      labels: ['Tasks'],
-    };
+
+  // radialChart() {
+  //   this.radial = {
+  //     chart: {
+  //       type: 'radialBar',
+  //       height: 180,
+  //     },
+  //     series: [70],
+  //     plotOptions: {
+  //       radialBar: {
+  //         track: {
+  //           background: '#c7c7c7',
+  //           margin: 0,
+  //           strokeWidth: '70%',
+  //         },
+  //         dataLabels: {
+  //           name: {
+  //             color: '#fff',
+  //             offsetY: -10,
+  //             fontSize: '14px',
+  //           },
+  //           value: {
+  //             color: '#fff',
+  //             fontSize: '20px',
+  //             offsetY: 0,
+  //           },
+  //         },
+  //         hollow: {
+  //           size: '65%',
+  //         },
+  //       },
+  //     },
+  //     fill: {
+  //       colors: ['#fd6585'],
+  //     },
+  //     labels: ['Загрузка комплекса'],
+  //   };
+  // }
+
+  async getLogs(id_machine = 1) {
+    try {
+      const response = await axios.get(
+        `https://api-aggregate.s-k56.ru/api/get-logs?id_machine=${id_machine}`
+      );
+      console.log('Успешный ответ от сервера:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Ошибка при отправке запроса:', error);
+      return [];
+    }
   }
-  removedArr(){
-        const removed = this.spakLine;
-  }
 
+  async test() {
+    setInterval(async () => {
+      const logs = await this.getLogs(); // Default value for id_machine: 1
+      const sortedLogs = logs.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+      const data = sortedLogs.map((log) => ({
+        x: new Date(log.time).toLocaleString(),
+        y: log.report,
+      }));
 
-//   public updateSeries() {
-//     setInterval((): void =>{
-//       this.updateSeries()
-//       }),10000;
-//     this.options.series = [{
-//         data: [23, 44, 1, 22]
-//       }];
-// }
-
-
-
-
-test(){
-  setInterval( () => {
-    // this.options.series[0].data = this.remove(this.options.series[0].data, 0)
-    this.options.series[0].data.shift();
-    this.options.series[0].data.push(getRandomInt(200))
-
-    console.log("kdlkfsold");
-  }, 1000)
-
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+      if (this.options) {
+        this.options.series = [{ data }];
+      }
+    }, 1000);
   }
 }
-
-
-
-
-// // Удаляем элемент массива со со сдвигом
-//   remove(arr, indexes) {
-//     var arrayOfIndexes = [].slice.call(arguments, 1)
-//     return arr.filter(function (item, index:never) {
-//         return arrayOfIndexes.indexOf(index) == -1
-//     })
-//   }
-
-}
-
-
-
-
-

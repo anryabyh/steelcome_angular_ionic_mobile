@@ -10,6 +10,7 @@ import { StatisticsPage } from './statistics.page';
 import { NgApexchartsModule } from "ng-apexcharts";
 
 
+
 @NgModule({
   imports: [
     CommonModule,

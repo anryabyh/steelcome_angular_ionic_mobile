@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-title>feed</ion-title>
+    <ion-title>Главная</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,19 +9,53 @@
     <ion-row>
       <ion-col> -->
   <ion-item>
-    <h2>Добро пожаловать {{displayUserData?.name}}</h2>
+    <h2>Добро пожаловать, {{displayUserData?.name}}</h2>
   </ion-item>
-    <ion-card>
-      <img alt="Стружкодробилка" src="https://s-k56.ru/images/system/struzhkodrobilka.png" />
-      <ion-card-header>
-        <ion-card-title>Стружкодробительный комплекс</ion-card-title>
-        <ion-card-subtitle>Серии PSX-7500</ion-card-subtitle>
-      </ion-card-header>
+  <!-- <ion-grid>
+    <ion-row> -->
+      <!-- <ion-col size="6">
+        <div class="checkbox-content"
+          [style.--img-src]="'url(https://s-k56.ru/images/system/struzhkodrobilka.png)'">
+          <ion-label class="checkbox-title">СДК 5-7</ion-label>
+          <ion-checkbox class="checkbox-item" value="food" checked></ion-checkbox>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="checkbox-content"
+          [style.--img-src]="'url(https://s-k56.ru/images/system/template_img/v630.png'")>
 
-      <ion-card-content>
-        Для переработки лома автомобилей, белой жести, старой бытовой техники, велосипедов, пустых консервных банок и других низкоактивных отходов с целью превращения их в сырье для производства стали высшего качества.
-      </ion-card-content>
-    </ion-card>
+          <ion-checkbox class="checkbox-item" value="Пресс к-3" unchecked></ion-checkbox>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="checkbox-content"
+          [style.--img-src]="'url(https://images.pexels.com/photos/220911/pexels-photo-220911.jpeg?auto=compress&cs=tinysrgb)'">
+          <ion-checkbox class="checkbox-item" value="food" unchecked></ion-checkbox>
+        </div>
+      </ion-col>
+
+      <ion-col size="6">
+        <div class="checkbox-content"
+          [style.--img-src]="'url(https://images.pexels.com/photos/220911/pexels-photo-220911.jpeg?auto=compress&cs=tinysrgb)'">
+          <ion-checkbox class="checkbox-item" value="food" unchecked></ion-checkbox>
+        </div>
+      </ion-col> -->
+    <!-- </ion-row>
+  </ion-grid> -->
+
+  <ion-card>
+    <img alt="Стружкодробилка" src="https://s-k56.ru/images/system/struzhkodrobilka.png" />
+    <ion-card-header>
+      <ion-card-title>Стружкодробительный комплекс</ion-card-title>
+      <ion-card-subtitle>Серии PSX-7500</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Для переработки лома автомобилей, белой жести, старой бытовой техники, велосипедов, пустых консервных банок и
+      других низкоактивных отходов с целью превращения их в сырье для производства стали высшего качества.
+    </ion-card-content>
+  </ion-card>
 
 
 </ion-content>

@@ -1,21 +1,21 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-title>statistics</ion-title>
+    <ion-title>Статистика</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <h1 class="title">My Charts</h1>
+  <h1 class="title">Работоспособность комплекса</h1>
 
   <div class="box box1">
 
     <apx-chart [chart]="options.chart"  [series]="options.series" [stroke]="options.stroke" [markers]="options.markers">
     </apx-chart>
   </div>
-    <div class="box box4">
-      <apx-chart [chart]="radial.chart" [series]="radial.series" [plotOptions]="radial.plotOptions" [fill]="radial.fill"
+    <!-- <div class="box box4">
+       <apx-chart [chart]="radial.chart" [series]="radial.series" [plotOptions]="radial.plotOptions" [fill]="radial.fill"
         [labels]="radial.labels"></apx-chart>
-    </div>
+    </div> -->
 
 </ion-content>
