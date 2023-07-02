@@ -16,7 +16,7 @@ export class MessagesPage implements OnInit {
     this.getLogsFromServer();
     setInterval(() => {
       this.getLogsFromServer();
-    }, 5000);
+    }, 10000);
   }
 
   async getLogsFromServer() {
